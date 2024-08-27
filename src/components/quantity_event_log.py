@@ -697,7 +697,7 @@ class QuantityEventLog(BaseElement):
             else:
                 path_to_folder = f"{path_to_folder}/"
         else:
-            path_to_folder = "/event_log/"
+            path_to_folder = "./event_log/"
 
         if not os.path.exists(path_to_folder[:-1]):
             os.mkdir(path_to_folder[:-1])

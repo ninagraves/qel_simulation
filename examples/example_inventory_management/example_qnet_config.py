@@ -1813,7 +1813,7 @@ quantity_guards = {"t3": quantity_guard_t3,
                    "t5": QuardT5()}
 
 object_guards = {"t1": object_guard_t1,
-                 "t5": object_guard_t5,
+                 "t5": object_guard_t5, # typical example for object guard
                  "t6": object_guard_t6,
                  "t8": object_guard_t8,
                  "t9": object_guard_t9,

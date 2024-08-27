@@ -45,7 +45,7 @@ The simulation object passes standardised instructions to the QNE which then exe
 Please note: In the default settings, silent transitions are executed automatically. If you only want specific silent 
 transitions to be fired with a corresponding instruction, you can specify this by passing the set of transition names 
 for the "manually_initiated_transitions" parameter in the q-net config.
-- We will use the example process mentioned above to explain the functionality in more detail.
+We will use the example process mentioned above to explain the functionality in more detail.
 
 ### Events
 An event in the process mining sense is represented by a (programming-related) object of a class inheriting from the 
