@@ -41,6 +41,7 @@ The simulation object passes standardised instructions to the QNE which then exe
 - Object Status Update: The changes the status of a PM-object (possibilities: created, active, terminated, inactive)
 - Object Activity Update
 - Object Quantity Update
+
 Please note: In the default settings, silent transitions are executed automatically. If you only want specific silent 
 transitions to be fired with a corresponding instruction, you can specify this by passing the set of transition names 
 for the "manually_initiated_transitions" parameter in the q-net config.
