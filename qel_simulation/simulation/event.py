@@ -7,7 +7,7 @@ import numpy as np
 from qel_simulation.components.log_element import LogElement
 from qel_simulation.simulation.object import Object, MultisetObject, BindingFunction
 from qel_simulation.qnet_elements.collection_point import CollectionCounter
-from qel_simulation.components.quantity_net import Execution
+from qel_simulation.simulation.execution import Execution
 from qel_simulation.simulation.instructions import Instruction, InstructionObjectCreation
 
 rng = np.random.default_rng(seed=42)
