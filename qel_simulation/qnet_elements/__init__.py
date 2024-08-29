@@ -1,4 +1,4 @@
-from qel_simulation.qnet_elements.collection_point import CollectionPoint
+from qel_simulation.qnet_elements.collection_point import CollectionPoint, CollectionCounter
 from qel_simulation.qnet_elements.object_arc import ObjectArc
 from qel_simulation.qnet_elements.object_place import ObjectPlace
 from qel_simulation.qnet_elements.qalculator import Qalculator
