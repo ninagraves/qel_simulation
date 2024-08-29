@@ -4,7 +4,8 @@ version = "0.1.0"
 description = ""
 authors = ["Nina Graves <graves@pads.rwth-aachen.de>"]
 readme = "README.md"
-license = {text = "CC BY 4.0", file = "LICENSE"}
+#TODO: add license
+#license = {text = "CC BY 4.0"}
 
 [tool.poetry.dependencies]
 python = "^3.11"
