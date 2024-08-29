@@ -2,9 +2,9 @@ from abc import ABC, abstractmethod
 from collections import Counter
 from typing import Any
 
-from src.components.net_elements.collection_point import CollectionPoint
-from src.components.net_elements.object_place import ObjectPlace
-from src.components.net_elements.transition import Transition
+from qel_simulation.components.net_elements.collection_point import CollectionPoint
+from qel_simulation.components.net_elements.object_place import ObjectPlace
+from qel_simulation.components.net_elements.transition import Transition
 
 
 # assumption: small stock is always positive

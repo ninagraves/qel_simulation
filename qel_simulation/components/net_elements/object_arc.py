@@ -1,5 +1,5 @@
-from src.components.net_elements.arc import Arc
-from src.components.net_elements.object_place import ObjectPlace
+from qel_simulation.components.net_elements.arc import Arc
+from qel_simulation.components.net_elements.object_place import ObjectPlace
 class ObjectArc(Arc):
 
     def __init__(self, source, target, name=None, label: str = None, properties: dict = None):

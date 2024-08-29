@@ -1,6 +1,6 @@
 from collections import Counter
 
-from src.components.net_elements.place import Place
+from qel_simulation.components.net_elements.place import Place
 
 
 class CollectionPoint(Place):

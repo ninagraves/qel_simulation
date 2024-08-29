@@ -4,11 +4,11 @@ from typing import Type
 
 import numpy as np
 
-from src.components.log_elements.log_element import LogElement
-from src.components.log_elements.object import Object, MultisetObject, BindingFunction
-from src.components.net_elements.collection_point import CollectionCounter
-from src.components.quantity_net import Execution
-from src.components.quantity_net_simulation.instructions import Instruction, InstructionObjectCreation
+from qel_simulation.components.log_elements.log_element import LogElement
+from qel_simulation.components.log_elements.object import Object, MultisetObject, BindingFunction
+from qel_simulation.components.net_elements.collection_point import CollectionCounter
+from qel_simulation.components.quantity_net import Execution
+from qel_simulation.components.quantity_net_simulation.instructions import Instruction, InstructionObjectCreation
 
 rng = np.random.default_rng(seed=42)
 

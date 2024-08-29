@@ -1,6 +1,6 @@
 import datetime
 
-from src.components.base_element import BaseElement
+from qel_simulation.components.base_element import BaseElement
 
 
 class QueueConfig(BaseElement):

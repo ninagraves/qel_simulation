@@ -2,8 +2,8 @@ import datetime
 from collections import Counter
 from typing import Type, Any
 
-from src.components.log_elements.object import Object, Status, BindingFunction, MultisetObject
-from src.components.net_elements.object_place import ObjectPlace
+from qel_simulation.components.log_elements.object import Object, Status, BindingFunction, MultisetObject
+from qel_simulation.components.net_elements.object_place import ObjectPlace
 
 
 # from components.log_elements.Event import Event

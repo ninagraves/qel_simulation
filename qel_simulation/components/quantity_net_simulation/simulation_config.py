@@ -1,12 +1,12 @@
 import datetime
 from typing import Type
 
-from src.components.base_element import BaseElement
-from src.components.log_elements.event import Event
-from src.components.log_elements.object import Object
-from src.components.quantity_net_simulation.qnet_config import QnetConfig
-from src.components.quantity_net_simulation.queue_config import QueueConfig
-from src.components.quantity_net_simulation.triggers import Trigger
+from qel_simulation.components.base_element import BaseElement
+from qel_simulation.components.log_elements.event import Event
+from qel_simulation.components.log_elements.object import Object
+from qel_simulation.components.quantity_net_simulation.qnet_config import QnetConfig
+from qel_simulation.components.quantity_net_simulation.queue_config import QueueConfig
+from qel_simulation.components.quantity_net_simulation.triggers import Trigger
 
 
 class SimulationConfig(BaseElement):

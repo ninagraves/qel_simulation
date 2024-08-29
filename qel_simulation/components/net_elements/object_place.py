@@ -1,7 +1,7 @@
 from typing import Type
 
-from src.components.log_elements.object import Object, DefaultObject, MultisetObject
-from src.components.net_elements.place import Place
+from qel_simulation.components.log_elements.object import Object, DefaultObject, MultisetObject
+from qel_simulation.components.net_elements.place import Place
 
 
 class ObjectPlace(Place):

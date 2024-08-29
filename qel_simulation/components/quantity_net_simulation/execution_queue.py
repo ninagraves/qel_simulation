@@ -2,15 +2,15 @@ import datetime
 from collections import Counter
 from typing import Type
 
-from src.components.log_elements.event import Event
-from src.components.log_elements.object import Object, Status
-from src.components.net_elements.object_place import ObjectPlace
-from src.components.quantity_net_simulation.instructions import (InstructionExecuteEvent, InstructionObjectCreation,
+from qel_simulation.components.log_elements.event import Event
+from qel_simulation.components.log_elements.object import Object, Status
+from qel_simulation.components.net_elements.object_place import ObjectPlace
+from qel_simulation.components.quantity_net_simulation.instructions import (InstructionExecuteEvent, InstructionObjectCreation,
                                                                  Instruction, InstructionTerminateEvent,
                                                                  InstructionObjectStatusUpdate,
                                                                  InstructionObjectQuantityUpdate,
                                                                  InstructionObjectAttributeUpdate)
-from src.components.quantity_net_simulation.queue_config import QueueConfig
+from qel_simulation.components.quantity_net_simulation.queue_config import QueueConfig
 
 
 class ScheduleType(str):

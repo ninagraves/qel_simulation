@@ -3,8 +3,8 @@ from typing import Any
 
 import pygraphviz as pgv
 
-from src.components.quantity_net import QuantityNet, Transition, Qarc, ObjectArc, ObjectPlace, CollectionPoint
-from src.GLOBAL import CHART_COLOURS
+from qel_simulation.components.quantity_net import QuantityNet, Transition, Qarc, ObjectArc, ObjectPlace, CollectionPoint
+from qel_simulation.GLOBAL import CHART_COLOURS
 
 
 class GraphElement:

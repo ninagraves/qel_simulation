@@ -1,4 +1,4 @@
-from src.components.base_element import ConnectedElement
+from qel_simulation.components.base_element import ConnectedElement
 
 
 class Place(ConnectedElement):

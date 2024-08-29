@@ -5,19 +5,19 @@ from typing import Type
 import numpy as np
 import pandas as pd
 
-from src.components.base_element import BaseElement
-from src.components.log_elements.event import Event
-from src.components.log_elements.object import Object, StatusActive, StatusInactive, StatusTerminated, Status, \
+from qel_simulation.components.base_element import BaseElement
+from qel_simulation.components.log_elements.event import Event
+from qel_simulation.components.log_elements.object import Object, StatusActive, StatusInactive, StatusTerminated, Status, \
     BindingFunction, MultisetObject
-from src.components.quantity_net_simulation.execution_queue import (ExecutionQueue, ObjectCreation, ObjectQuantityChange,
+from qel_simulation.components.quantity_net_simulation.execution_queue import (ExecutionQueue, ObjectCreation, ObjectQuantityChange,
                                                                     ObjectAttributeChange, EndEvent, StartEvent,
                                                                     ObjectStatusChange, ScheduleTypeFixed,
                                                                     ScheduleTypeArrivalRate, ScheduleType)
-from src.components.quantity_net_simulation.instructions import (InstructionObjectCreation, InstructionExecuteEvent,
+from qel_simulation.components.quantity_net_simulation.instructions import (InstructionObjectCreation, InstructionExecuteEvent,
                                                                  InstructionTerminateEvent)
-from src.components.quantity_net_simulation.quantity_net_execution import QuantityNetExecution
-from src.components.quantity_net_simulation.simulation_config import SimulationConfig
-from src.components.quantity_net_simulation.triggers import NetElementTrigger, MultiTrigger
+from qel_simulation.components.quantity_net_simulation.quantity_net_execution import QuantityNetExecution
+from qel_simulation.components.quantity_net_simulation.simulation_config import SimulationConfig
+from qel_simulation.components.quantity_net_simulation.triggers import NetElementTrigger, MultiTrigger
 
 
 class Simulation(BaseElement):
