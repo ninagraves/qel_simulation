@@ -1,11 +1,11 @@
 from typing import Type, Any, Callable, Counter
 
 from qel_simulation.components.base_element import BaseElement
-from qel_simulation.components.log_elements.event import Event, CollectionCounter
-from qel_simulation.components.log_elements.object import Object, MultisetObject
-from qel_simulation.components.net_elements.guard import QuantityGuardSmallstockConfig, QuantityGuard
-from qel_simulation.components.net_elements.qalculator import Qalculator
-from qel_simulation.components.net_elements.transition import BindingFunction
+from qel_simulation.simulation.event import Event, CollectionCounter
+from qel_simulation.simulation.object import Object, MultisetObject
+from qel_simulation.qnet_elements.guard import QuantityGuardSmallstockConfig, QuantityGuard
+from qel_simulation.qnet_elements.qalculator import Qalculator
+from qel_simulation.qnet_elements.transition import BindingFunction
 
 
 class QnetConfig(BaseElement):

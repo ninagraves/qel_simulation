@@ -4,7 +4,7 @@ from typing import Type
 
 from multiset import Multiset
 
-from qel_simulation.components.log_elements.log_element import LogElement
+from qel_simulation.components.log_element import LogElement
 
 
 # from components.log_elements.QuantityOperation import ObjectOperation

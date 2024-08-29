@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 from collections import Counter
 
-from qel_simulation.components.log_elements.object import BindingFunction
-from qel_simulation.components.net_elements.collection_point import CollectionCounter
+from qel_simulation.simulation.object import BindingFunction
+from qel_simulation.qnet_elements.collection_point import CollectionCounter
 
 
 class Qalculator (ABC):

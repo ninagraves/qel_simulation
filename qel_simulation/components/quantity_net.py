@@ -3,16 +3,16 @@ from collections import Counter
 from typing import Type, Callable
 
 from qel_simulation.components.base_element import BaseElement, ConnectedElement
-from qel_simulation.components.log_elements.object import Object
-from qel_simulation.components.net_elements.arc import Arc
-from qel_simulation.components.net_elements.collection_point import CollectionPoint, CollectionCounter
-from qel_simulation.components.net_elements.guard import QuantityGuardSmallStock, QuantityGuard
-from qel_simulation.components.net_elements.object_arc import ObjectArc
-from qel_simulation.components.net_elements.object_place import ObjectPlace
-from qel_simulation.components.net_elements.place import Place
-from qel_simulation.components.net_elements.qalculator import Qalculator
-from qel_simulation.components.net_elements.qarc import Qarc
-from qel_simulation.components.net_elements.transition import Transition, BindingFunction, TransitionExecution
+from qel_simulation.simulation.object import Object
+from qel_simulation.qnet_elements.arc import Arc
+from qel_simulation.qnet_elements.collection_point import CollectionPoint, CollectionCounter
+from qel_simulation.qnet_elements.guard import QuantityGuardSmallStock, QuantityGuard
+from qel_simulation.qnet_elements.object_arc import ObjectArc
+from qel_simulation.qnet_elements.object_place import ObjectPlace
+from qel_simulation.qnet_elements.place import Place
+from qel_simulation.qnet_elements.qalculator import Qalculator
+from qel_simulation.qnet_elements.qarc import Qarc
+from qel_simulation.qnet_elements.transition import Transition, BindingFunction, TransitionExecution
 
 
 # assumption: Provided OCPN is well-formed.

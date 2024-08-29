@@ -1,5 +1,5 @@
 from qel_simulation.components.base_element import ConnectingElement
-from qel_simulation.components.net_elements.place import Place
+from qel_simulation.qnet_elements.place import Place
 
 
 class Arc(ConnectingElement):

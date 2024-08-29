@@ -3,13 +3,13 @@ from itertools import combinations, product
 from typing import Type, Callable
 
 from qel_simulation.components.base_element import ConnectedElement
-from qel_simulation.components.log_elements.object import Object, BindingFunction, MultisetObject
-from qel_simulation.components.net_elements.collection_point import CollectionPoint, CollectionCounter
-from qel_simulation.components.net_elements.guard import Guard
-from qel_simulation.components.net_elements.object_arc import ObjectArc
-from qel_simulation.components.net_elements.object_place import ObjectPlace
-from qel_simulation.components.net_elements.qalculator import Qalculator, DefaulQalculator
-from qel_simulation.components.net_elements.qarc import Qarc
+from qel_simulation.simulation.object import Object, BindingFunction, MultisetObject
+from qel_simulation.qnet_elements.collection_point import CollectionPoint, CollectionCounter
+from qel_simulation.qnet_elements.guard import Guard
+from qel_simulation.qnet_elements.object_arc import ObjectArc
+from qel_simulation.qnet_elements.object_place import ObjectPlace
+from qel_simulation.qnet_elements.qalculator import Qalculator, DefaulQalculator
+from qel_simulation.qnet_elements.qarc import Qarc
 
 
 class TransitionExecution:

@@ -2,16 +2,16 @@ import datetime
 from typing import Type, Any
 
 from qel_simulation.components.base_element import BaseElement
-from qel_simulation.components.log_elements.event import Event, create_activity
-from qel_simulation.components.log_elements.object import Object, create_object_type, StatusActive, StatusTerminated, MultisetObject, BindingFunction
-from qel_simulation.components.net_elements.collection_point import CollectionPoint, CollectionCounter
-from qel_simulation.components.net_elements.guard import QuantityGuardSmallStock
+from qel_simulation.simulation.event import Event, create_activity
+from qel_simulation.simulation.object import Object, create_object_type, StatusActive, StatusTerminated, MultisetObject, BindingFunction
+from qel_simulation.qnet_elements.collection_point import CollectionPoint, CollectionCounter
+from qel_simulation.qnet_elements.guard import QuantityGuardSmallStock
 from qel_simulation.components.quantity_event_log import QuantityEventLog
 from qel_simulation.components.quantity_net import QuantityNet
-from qel_simulation.components.quantity_net_simulation.instructions import (InstructionExecuteEvent, Instruction,
-                                                                 InstructionTerminateEvent,
-                                                                 InstructionObjectCreation)
-from qel_simulation.components.quantity_net_simulation.qnet_config import QnetConfig
+from qel_simulation.simulation.instructions import (InstructionExecuteEvent, Instruction,
+                                                    InstructionTerminateEvent,
+                                                    InstructionObjectCreation)
+from qel_simulation.simulation.qnet_config import QnetConfig
 
 
 def check_object_status_in_enabled_binding(binding_function: BindingFunction) -> bool:

@@ -1,7 +1,0 @@
-from qel_simulation.components.net_elements.collection_point import CollectionPoint
-from qel_simulation.components.net_elements.guard import QuantityGuardSmallStock, QuantityGuard
-from qel_simulation.components.net_elements.object_arc import ObjectArc
-from qel_simulation.components.net_elements.object_place import ObjectPlace
-from qel_simulation.components.net_elements.transition import Transition, BindingFunction
-from qel_simulation.components.net_elements.qalculator import Qalculator
-from qel_simulation.components.net_elements.qarc import Qarc

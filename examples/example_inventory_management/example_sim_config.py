@@ -1,6 +1,6 @@
 import datetime
 
-from qel_simulation.components.quantity_net_simulation.simulation_config import SimulationConfig
+from qel_simulation.simulation.simulation_config import SimulationConfig
 from examples.example_inventory_management.example_qnet_config import expected_customer_orders_per_day, qnet_conf
 
 ####### EVENTS #######

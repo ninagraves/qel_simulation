@@ -6,9 +6,9 @@ import numpy as np
 from sqlalchemy import create_engine
 
 from qel_simulation.components.base_element import BaseElement
-from qel_simulation.components.log_elements.event import Event
-from qel_simulation.components.log_elements.object import Object
-from qel_simulation.components.net_elements.collection_point import CollectionPoint
+from qel_simulation.simulation.event import Event
+from qel_simulation.simulation.object import Object
+from qel_simulation.qnet_elements.collection_point import CollectionPoint
 from qel_simulation.GLOBAL import *
 import datetime
 
