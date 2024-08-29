@@ -7,11 +7,18 @@ to the OCEL 2.0 standard[1] with an additional table for the quantity operations
 [1] https://www.ocel-standard.org/
 
 ## Installation
-The repository uses poetry for dependency management. To install the dependencies, run the following command in the project directory:
-```poetry install```
-This will lead to the installation of all dependencies specified in the pyproject.toml file except pygraphviz (only needed for the visualisation of the underlying Q-net).
-To install pygraphviz, follow the instructions provided in the manual download description (https://pygraphviz.github.io/documentation/stable/install.html).
-After that it is recommended to execute another ```poetry install``` to synchronise the dependencies.
+The repository uses poetry for dependency management. If you do not have poetry installed, you can install it by running:
+```pip install poetry```
+Installation of the full tool has to occur in four steps:
+1. Manually install PyGraphviz (needed for the visualisation of the underlying Q-net): https://gitlab.com/graphviz/graphviz/-/package_files/6164164/download
+2. Run ```poetry install``` in the project directory
+3. To install PyGraphviz in the poetry environment, you must follow the instructions on https://pygraphviz.github.io/documentation/stable/install.html
+For Windows this means you must run:
+```poetry run pip install --config-settings="--global-option=build_ext" `
+              --config-settings="--global-option=-IC:\Program Files\Graphviz\include" `
+              --config-settings="--global-option=-LC:\Program Files\Graphviz\lib" `
+              pygraphviz```
+4. Run ```poetry install``` again to synchronise the dependencies
 
 ## Usage
 A simulation is specified using two files: The q-net configuration file and the simulation configuration file. The 
