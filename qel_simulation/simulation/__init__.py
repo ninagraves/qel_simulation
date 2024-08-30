@@ -1,5 +1,5 @@
-from qel_simulation.simulation.object import Object, StatusInactive, StatusActive, StatusTerminated, MultisetObject, BindingFunction
-from qel_simulation.simulation.event import Event
+from qel_simulation.simulation.object import Object, StatusInactive, StatusActive, StatusTerminated, MultisetObject, BindingFunction, create_object_type
+from qel_simulation.simulation.event import Event, create_activity
 from qel_simulation.simulation.instructions import InstructionObjectCreation, InstructionObjectStatusUpdate, Instruction, InstructionObjectAttributeUpdate, InstructionExecuteEvent
 from qel_simulation.simulation.simulation_config import SimulationConfig
 from qel_simulation.simulation.qnet_config import QnetConfig
