@@ -196,6 +196,17 @@ class QuantityNetExecution(BaseElement):
                                                  log_activity=False)
                 self._add_activity(activity=activity_class)
 
+    def create_silent_object_types(self):
+        """Create activities for silent transitions according to config."""
+
+        for object_type in self.config.silent_object_types:
+            object_type_class = self.identify_object_type(object_type_name=object_type)
+            if object_type_class:
+                object_type_class.log_object_type = False
+            else:
+                object_type_class = create_object_type(object_type_name=object_type, default_attribute_values={}, log_object_type=False)
+                self._add_object_type(object_type=object_type_class)
+
     def get_silent_activities(self) -> set[Type[Event]]:
         """Return set of silent activities."""
 

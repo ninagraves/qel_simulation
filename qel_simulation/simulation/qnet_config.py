@@ -20,6 +20,8 @@ class QnetConfig(BaseElement):
         self.object_types_attributes: dict[str: dict[str: Any]] = {} # {object_type_name: default_attributes}
         # pass created classes for object types (optional)
         self.object_types_classes: list[Type[Object]] = [] # list of object classes
+        # set object types not to be logged (optional)
+        self.silent_object_types: set[str] = set() # {object_type_name}
 
         ### Quantity net
         # specify some optional general properties of the qnet (all optional)
