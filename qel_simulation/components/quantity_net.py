@@ -1273,5 +1273,48 @@ class QuantityNet(BaseElement):
         for arc in variable_arcs:
             arc_element = self.identify_arc(arc)
             arc_element.variable = True
+            binding_function_quantities = arc_element.transition.binding_function_quantities
+            binding_function_quantities[arc_element.object_type] = 0
+            arc_element.transition.binding_function_quantities = binding_function_quantities
 
+    def set_maximum_object_tokens_variable_arc(self, variable_arc_maximum: dict[ObjectArc | tuple: int | None]):
+        """update maximum object tokens for variable arcs and the corresponding binding function quantities of the transition."""
+
+        for arc, maximum in variable_arc_maximum.items():
+            arc_element = self.identify_arc(arc)
+            arc_element.variable = True
+            maximum_binding_function_quantities = arc_element.transition.maximum_binding_function_quantities
+            maximum_binding_function_quantities[arc_element.object_type] = maximum if maximum is not None else 0
+            arc_element.transition.maximum_binding_function_quantities = maximum_binding_function_quantities
+            binding_function_quantities = arc_element.transition.binding_function_quantities
+            binding_function_quantities[arc_element.object_type] = 0
+            arc_element.transition.binding_function_quantities = binding_function_quantities
+
+    def set_minimum_object_tokens_variable_arc(self, variable_arc_minimum: dict[ObjectArc | tuple: int | None]):
+        """update maximum object tokens for variable arcs and the corresponding binding function quantities of the transition."""
+
+        for arc, minimum in variable_arc_minimum.items():
+            arc_element = self.identify_arc(arc)
+            arc_element.variable = True
+            minimum_binding_function_quantities = arc_element.transition.minimum_binding_function_quantities
+            minimum_binding_function_quantities[arc_element.object_type] = minimum if minimum is not None and minimum != 0 else 1
+            arc_element.transition.minimum_binding_function_quantities = minimum_binding_function_quantities
+            binding_function_quantities = arc_element.transition.binding_function_quantities
+            binding_function_quantities[arc_element.object_type] = 0
+            arc_element.transition.binding_function_quantities = binding_function_quantities
+
+    def specify_number_of_object_tokens_variable_arc(self, variable_arc_fixed: dict[ObjectArc | tuple: int | None]):
+        """set the number of object tokens the transition needs for firing to a fixed number."""
+        for arc, value in variable_arc_fixed.items():
+            arc_element = self.identify_arc(arc)
+            arc_element.variable = True
+            binding_function_quantities = arc_element.transition.minimum_binding_function_quantities
+            binding_function_quantities[arc_element.object_type] = value if value is not None else binding_function_quantities[arc_element.object_type]
+            arc_element.transition.minimum_binding_function_quantities = binding_function_quantities
+            binding_function_quantities = arc_element.transition.maximum_binding_function_quantities
+            binding_function_quantities[arc_element.object_type] = value
+            arc_element.transition.maximum_binding_function_quantities = binding_function_quantities
+            binding_function_quantities = arc_element.transition.minimum_binding_function_quantities
+            binding_function_quantities[arc_element.object_type] = value
+            arc_element.transition.minimum_binding_function_quantities = binding_function_quantities
 

@@ -68,6 +68,10 @@ class QnetConfig(BaseElement):
         self.small_stock_guards: dict[str: QuantityGuardSmallstockConfig] = {} # {transition_name: small_stock_guard_config}
         self.manually_initiated_transitions = {} # {transition_name: bool}
         self.transition_binding_selection: dict[str: Callable] = {} # {transition_name: Callable}}
+        self.variable_arcs: set[tuple[str, str]] = set() # {(start, target), ...}
+        self.specify_variable_arc_object_tokens: dict[tuple[str, str]: int] = {} # {arc: number of objects}
+        self.maximum_variable_arc_object_quantities: dict[tuple[str, str]: int] = {} # {arc: maximum objects}
+        self.minimum_variable_arc_object_quantities: dict[tuple[str, str]: int] = {} # {arc: minimum objects}
 
         # ## Activities define activities with a name and a dict of attribute names and a default value,
         # activity classes are created automatically from passed parameters (optional)

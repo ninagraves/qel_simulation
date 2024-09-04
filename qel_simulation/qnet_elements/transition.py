@@ -179,7 +179,7 @@ class Transition(ConnectedElement):
     def binding_function_quantities(self):
 
         if self._binding_function_quantities:
-            return self._binding_function_quantities
+            return self._binding_function_quantities.copy()
         else:
             object_types_list = list(self.object_types)
             one_per_object_type = dict(zip(object_types_list, [1] * len(object_types_list)))
@@ -198,9 +198,9 @@ class Transition(ConnectedElement):
     def maximum_binding_function_quantities(self):
 
         if self._maximum_binding_function_quantities:
-            return self._maximum_binding_function_quantities
+            return self._maximum_binding_function_quantities.copy()
         else:
-            return self.binding_function_quantities
+            return self.binding_function_quantities.copy()
 
     @maximum_binding_function_quantities.setter
     def maximum_binding_function_quantities(self, maximum_binding_object_quantities: dict[Type[Object]: int]):
@@ -218,9 +218,9 @@ class Transition(ConnectedElement):
     @property
     def minimum_binding_function_quantities(self):
         if self._minimum_binding_function_quantities:
-            return self._minimum_binding_function_quantities
+            return self._minimum_binding_function_quantities.copy()
         else:
-            return self.binding_function_quantities
+            return self.binding_function_quantities.copy()
 
     @minimum_binding_function_quantities.setter
     def minimum_binding_function_quantities(self, minimum_binding_object_quantities: dict[Type[Object]: int]):

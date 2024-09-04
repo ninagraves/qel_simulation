@@ -294,6 +294,13 @@ class QuantityNetExecution(BaseElement):
         else:
             pass
 
+        # set arcs to variable explicitly and specify variable constraints per arc
+        self.quantity_net.make_arcs_variable(variable_arcs=self.config.variable_arcs)
+        self.quantity_net.set_maximum_object_tokens_variable_arc(self.config.maximum_variable_arc_object_quantities)
+        self.quantity_net.set_minimum_object_tokens_variable_arc(self.config.minimum_variable_arc_object_quantities)
+        self.quantity_net.specify_number_of_object_tokens_variable_arc(self.config.specify_variable_arc_object_tokens)
+
+
         # add transition binding selection functions
         self.quantity_net.set_transition_binding_selection(self.config.transition_binding_selection)
 
