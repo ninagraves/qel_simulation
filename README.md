@@ -6,7 +6,8 @@ to the OCEL 2.0 standard[1] with an additional table for the quantity operations
 
 [1] https://www.ocel-standard.org/
 
-## Installation
+## Getting Started
+### Installation
 The repository uses poetry for dependency management. If you do not have poetry installed, you can install it by running:
 ```pip install poetry```
 Installation of the full tool has to occur in four steps:
@@ -19,7 +20,7 @@ For Windows this means you must run:
               pygraphviz```
 3. Run ```poetry install``` again to synchronise the dependencies
 
-## Getting Started
+### Overview of the Tool
 A simulation is specified using two files: The q-net configuration file and the simulation configuration file. The 
 options for the configuration parameters are specified in the respective config classes that can be found in the 
 "simulation" folder.
@@ -33,7 +34,7 @@ The simulation is based on the following components:
 - The q-net: The q-net specifies the control flow of the simulation. 
 It is an extended object-centric process model where activities can be assigned to transitions and object types to places.
 - Activities (class Event): Activities can be assigned to transitions in the q-net. 
-Whenever a transition is fired, an event is created and logged.
+Whenever a non-silent transition is fired, a corresponding event is created and logged.
 - Object types (class Object): Object types can be assigned to places in the q-net. 
 Whenever an object is created, or attributes change this is logged.
 - Simulation: The simulation object is the main object that orchestrates the simulation. 
@@ -46,23 +47,31 @@ An example using the advanced options is provided in the "examples" folder.
 The more detailed basic explanation accompanies the modular building-block style example. *TODO: To be completed*
 
 
-### Quantity net configuration (Q-net, Activities, Object Types)
+## Quantity Net Configuration
+The quantity net configuration specifies all necessary elements of an executable quantity net.
+In includes the following elements:
+- Quantity Net
+- Object Types
+- Activities
+
+In the following, we will explain the options for configuring each of these elements.
+
+### Quantity Net
 The basis of the quantity net is the structure of the net which is specified by a set of arcs.
-- Structure: Every arc must connect a transition (name starting with "t") with either an object place (name starting with "p") or a collection point (name starting with "c").
+- **Structure**: Every arc must connect a transition (name starting with "t") with either an object place (name starting with "p") or a collection point (name starting with "c").
 While the object arcs are directed and a tuple ("p1", "t1") specifies an arc from p1 to t1, arcs including collection points are not directed, so the order of the elements in the tuple is irrelevant.
 The q-net structure is specified using the attribute *net_structure* in a q-net configuration.
-- Initial/Final places: The initial and final object places are automatically determined by the q-net structure -- object places without an incoming arc are initial places, object places without an outgoing arc are final places.
+- **Sources and Sinks**: The initial and final object places are automatically determined by the q-net structure -- object places without an incoming arc are initial places, object places without an outgoing arc are final places.
 If you want to deviate from this, you can set individual places as initial or final places using the attributes *initial_places* and *final_places* attributes in the q-net configuration.
 Setting the initial places is relevant if you generate objects for an object type automatically, as the default is to place an object into all initial places of the object type.
 If you specify the location to place objects into the net manually, this setting would be irrelevant.
-The specification of the final places is only relevant for performance reasons, as objects are set to inactive once they reach a final place and are no longer considered for the simulation.
-- Object Types: The default is that all places are assigned to a default object type.
-If you want to specify your own object types, you can do so by specifying the object types in the q-net configuration.
-There are two possibilities:
-  - The simple building-block style: *object_types_attributes* dict with object type name and then you can specify attributes and default values or just put None.
-  - Advanced option: Creating your own object type class that inherits from the Object class and specifying the class in the *object_types_classes* attribute.
-- Variable Arcs / Transition binding function quantities: Two ways of specifying, one per arc, the other per transition. 
-**Specifications per arc overwrite specifications per transition.**
+The specification of the final places is only relevant for performance reasons. 
+The default assumption is, that the final marking of the net is reached once an object token reaches a sink place, leading to objects being set to inactive, and, therefore, no longer considered in the simulation once this is the case. 
+- **Object Places**: The default is that all places are assigned to a default object type.
+However, you can assign your individual object type names to places using the *place_types* attribute in the q-net configuration.
+Here you can pass a dictionary with the place names as keys and the object type names as values.
+- **Variable Arcs / Transition binding function quantities**: Two ways of specifying, one per arc, the other per transition. 
+**Warning: Specifications per arc overwrite specifications per transition.**
   - Per transition: You can specify the number of tokens that are consumed and produced per object type using a dict. 
     While this ensures that it is well-formed, you have to make sure all object types the transition refers to are included in the dict. 
     The arcs are set to variable automatically.
@@ -77,13 +86,55 @@ There are two possibilities:
         - range of object tokens
         - unspecified number of object tokens: any number is allowed by default. 
         Number can be restricted in more detail using object guards.
-
-#### Transitions
-- Transition labels: By setting the "transition_labels" attribute to a dictionary with transition names as keys and the 
+- **Transition labels**: By setting the "transition_labels" attribute to a dictionary with transition names as keys and the 
 labels as values, you can specify the names of the transitions in the q-net. 
 These names will also be logged in the event log.
+- **Silent Transitions**: All silent transitions are always executed instantly, if not specified otherwise (see manually initiated transitions below). 
+The default is that all unlabelled transitions are silent.
+If you want to specify your own silent transitions, i.e., labelled transitions that are executed instantly, you can do so by passing a set of transition names to the attribute *silent_transitions* in the q-net configuration.
+- **Initial Markings Object Places**: There are multiple ways of specifying the initial marking of the q-net.
+1. Pass a set of objects (computer-science objects of the class Object) to the attribute *initial_objects* in the q-net configuration.
+These will be placed in the initial places of the object type they belong to.
+2. A dictionary with the object type name or object type class as keys and an integer as values passed to the attribute *initial_marking_object_types* leads to the generation of this number of objects per type which are subsequently added to each of the object type's initial places.
+3. You can specify the initial marking by passing a dictionary with the place names as keys and the number of tokens as values to the attribute *initial_marking_object_places* in the q-net configuration.
+4. The last attribute to specify an initial marking for object places is called _initial_objects_in_places_. Here, you pass a dictionary with the place names as keys and a multiset of objects as values. 
+- **Initial Marking Collection Points**: You can specify the initial marking of collection points by passing a dictionary with the collection point names as keys and a Counter (library: Collections) as value to the attribute *initial_marking_collection_points* in the q-net configuration.
+- **Final Marking**: If the lifecycle of an object does not come to an end by reaching a single sink place, you can specify all possible final markings (aka markings in which the object can/should finish) of the q-net by setting a dictionary as *final_markings*. 
+The dict should specify all possible sets of final markings per object type, so the key is the object type and the value is a list of sets.
+- **Object Guards** (advanced): To further restrict the firing of a transition w.r.t. the objects in the input object places, you can specify object guards, i.e., set a dictionary with the transition names as keys and a callable function as _transition_object_guard_ in the q-net configuration.
+The function you pass must take an object of the type "BindingFunction" (a dictionary with Object Type Classes of the input places as keys and multisets of objects as values) as input and return a boolean value.
+If the function returns True, the transition is considered enabled under the passed binding.
+- **Quantity Guards** (partially advanced): You can also restrict the firing of a transition in consideration of the input objects (the object binding function) in light of the current item levels of all connected collection points.
+This is done by setting _transition_quantity_guard_ to a dictionary with the transition names as keys and either (1) a class that inherits from "QuantityGuard", or (2) a callable function returning a boolean that takes two inputs: the object binding function and a collection counter the current item levels of all connected collection points. <br>
+The typical scenario in which a transition should only be enabled if the quantity of a certain item is below a certain threshold for either a single item type or all item types is readily available as a building block.
+To use it you pass a dictionary with "QuantityGuardSmallstockConfig"-objects for the transitions (keys) to the attribute _small_stock_guards_. <br>
+  This config has three attributes specifying how you want your smallstockguard to work:
+     - _counter_threshold_: a collection counter with the thresholds for a set of item types for connected collection points,
+     - _counter_all_item_types_: a dictionary with a boolean as value for each of the collection points included in the collection counter (key).
+  The boolean value specifies for each of the collection points whether the threshold should be applied to all item types or only to a specific set of item types, i.e., must all item types be below the threshold or only one of them.
+  Default is False for all collection points.
+     - _all_counter_condition_: a boolean value specifying whether the transition is enabled if the conditions are met for all collection points or if the condition is met for one of the collection points.
+  Default is True, meaning all collection points must meet the condition.
+
+Examples for all possible ways of defining object and quantity guards can be found in the Inventory Management example.
+
+
+### Quantity Net Execution
+#### Object Types
+**Warning: Changes to objects are global and affect the object anywhere in the q-net, i.e., all tokens referring to the same identifier are affected by the change in object attributes, object quantities and object status.**
+If you want to specify your own object types for the executable q-net, you can do so by specifying the object types in the q-net configuration.
+There are two possibilities:
+  - The simple building-block style: *object_types_attributes* dict with object type name and then you can specify attributes and default values or just put None.
+  - Advanced option: Creating your own object type class that inherits from the Object class and specifying the class in the *object_types_classes* attribute.
+
+
+#### Activities
 - Silent Activities: If you want a transition to be labelled but not included in the event log, you can specify the "silent_activities" attribute in the q-net configuration.
 The set of activity names you pass here will not be logged in the event log.
+
+### Transition Executions
+- **Object Guard**: You can specify the conditions under which a transition can be fired by passing a dictionary with the transition names as keys and a list of object guards as values to the attribute *object_guards* in the q-net configuration.
+- **Manually Initiated Transitions**: By default, all silent transitions are executed automatically. 
 
 ### Simulation configuration
 
