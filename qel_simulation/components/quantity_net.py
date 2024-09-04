@@ -4,7 +4,7 @@ from typing import Type, Callable
 
 from qel_simulation.components.base_element import BaseElement, ConnectedElement
 from qel_simulation.simulation.execution import Execution
-from qel_simulation.simulation.object import Object
+from qel_simulation.simulation.object import Object, create_object_type
 from qel_simulation.qnet_elements.arc import Arc
 from qel_simulation.qnet_elements.collection_point import CollectionPoint, CollectionCounter
 from qel_simulation.qnet_elements.guard import QuantityGuardSmallStock, QuantityGuard
@@ -17,7 +17,6 @@ from qel_simulation.qnet_elements.transition import Transition, BindingFunction,
 
 
 # assumption: Provided OCPN is well-formed.
-
 
 class QuantityNet(BaseElement):
     def __init__(self, name, label: str = None, properties: dict = None):
@@ -415,7 +414,7 @@ class QuantityNet(BaseElement):
                 raise ValueError(f"Passed calculator {qalculator} is not a valid calculator. "
                                  f"Must be Qalculator object.")
 
-    def set_place_types(self, place_mapping: dict[ObjectPlace | str, Type[Object]]):
+    def set_place_types(self, place_mapping: dict[ObjectPlace | str, Type[Object] | str]):
         """
         Update places according to passed dictionary of ObjectPlaces and their corresponding ObjectType (class).
         Functionality:
@@ -451,7 +450,14 @@ class QuantityNet(BaseElement):
                 raise ValueError(f"Passed place {place} is not an ObjectPlace in the net.")
 
             # assign object type to place
-            place_element.object_type = otype
+            if isinstance(otype, str):
+                object_type_element = self.identify_object_type(otype)
+                if object_type_element:
+                    place_element.object_type = object_type_element
+                else:
+                    place_element.object_type = create_object_type(otype)
+            else:
+                place_element.object_type = otype
 
     def set_net_structure(self, arcs: set | list[tuple[str, str]]) -> (list[Transition | ObjectPlace | CollectionPoint],
                                                                        list[Qarc | ObjectArc]):
@@ -1251,7 +1257,7 @@ class QuantityNet(BaseElement):
 
         return ocpn
 
-    def identify_object_type(self, object_type_name: str) -> Type[Object]:
+    def identify_object_type(self, object_type_name: str) -> Type[Object] | None:
         """
         Pass object type name and get corresponding object type.
         """
@@ -1260,7 +1266,7 @@ class QuantityNet(BaseElement):
         if len(object_types) == 1:
             return object_types.pop()
         else:
-            raise ValueError(f"Object type {object_type_name} could not be identified.")
+            return None
 
     def make_arcs_variable(self, variable_arcs: set[ObjectArc | tuple]):
 

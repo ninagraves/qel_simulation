@@ -135,7 +135,6 @@ class QuantityNetExecution(BaseElement):
     def _add_object_types_from_config(self):
         """Add described and created object classes to this structure."""
 
-        # create underspecified object types
         for object_type, default_attributes in self.config.object_types_attributes.items():
             object_type_class = self.create_object_type(object_type_name=object_type,
                                                         default_attribute_values=default_attributes)
@@ -263,6 +262,12 @@ class QuantityNetExecution(BaseElement):
         new_place_type_mapping = {}
         for place, object_type_name in self.config.place_types.items():
             object_type = self.identify_object_type(object_type_name=object_type_name)
+            if object_type is None:
+                object_type_class = self.create_object_type(object_type_name=object_type_name,
+                                                            default_attribute_values=None)
+                self._add_object_type(object_type=object_type_class)
+            else:
+                pass
             new_place_type_mapping[place] = object_type
 
         # add place mapping to quantity net
@@ -304,7 +309,10 @@ class QuantityNetExecution(BaseElement):
             new_binding_function_specification = {}
             for object_type_name, object_quantity in binding_function.items():
                 object_type = self.identify_object_type(object_type_name=object_type_name)
-                new_binding_function_specification[object_type] = object_quantity
+                if object_type is None:
+                    raise ValueError(f"Object type {object_type_name} not found.")
+                else:
+                    new_binding_function_specification[object_type] = object_quantity
 
             new_transition_binding_function_specification[transition] = new_binding_function_specification
         return new_transition_binding_function_specification
@@ -317,7 +325,10 @@ class QuantityNetExecution(BaseElement):
 
             for object_type_name, requested_objects in self.config.initial_marking_object_types.items():
                 object_type = self.identify_object_type(object_type_name=object_type_name)
-                required_objects[object_type] = requested_objects
+                if object_type:
+                    required_objects[object_type] = requested_objects
+                else:
+                    raise ValueError(f"Object type {object_type_name} not found.")
 
         else:
             pass
@@ -378,7 +389,7 @@ class QuantityNetExecution(BaseElement):
         else:
             pass
 
-    def identify_object_type(self, object_type_name: str | Type[Object]) -> Type[Object]:
+    def identify_object_type(self, object_type_name: str | Type[Object]) -> Type[Object] | None:
         """Pass object type or object type name and receive object type class."""
 
         if object_type_name in self.object_types:
@@ -386,7 +397,7 @@ class QuantityNetExecution(BaseElement):
         elif object_type_name in self.object_type_names:
             object_type = self.object_type_names_classes[object_type_name]
         else:
-            raise ValueError(f"Passed object type {object_type_name} cannot be identified within simulation.")
+            return None
 
         return object_type
 
