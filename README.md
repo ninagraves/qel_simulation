@@ -93,11 +93,11 @@ These names will also be logged in the event log.
 The default is that all unlabelled transitions are silent.
 If you want to specify your own silent transitions, i.e., labelled transitions that are executed instantly, you can do so by passing a set of transition names to the attribute *silent_transitions* in the q-net configuration.
 - **Initial Markings Object Places**: There are multiple ways of specifying the initial marking of the q-net.
-1. Pass a set of objects (computer-science objects of the class Object) to the attribute *initial_objects* in the q-net configuration.
-These will be placed in the initial places of the object type they belong to.
-2. A dictionary with the object type name or object type class as keys and an integer as values passed to the attribute *initial_marking_object_types* leads to the generation of this number of objects per type which are subsequently added to each of the object type's initial places.
-3. You can specify the initial marking by passing a dictionary with the place names as keys and the number of tokens as values to the attribute *initial_marking_object_places* in the q-net configuration.
-4. The last attribute to specify an initial marking for object places is called _initial_objects_in_places_. Here, you pass a dictionary with the place names as keys and a multiset of objects as values. 
+  1. Pass a set of objects (computer-science objects of the class Object) to the attribute *initial_objects* in the q-net configuration.
+  These will be placed in the initial places of the object type they belong to.
+  2. A dictionary with the object type name or object type class as keys and an integer as values passed to the attribute *initial_marking_object_types* leads to the generation of this number of objects per type which are subsequently added to each of the object type's initial places.
+  3. You can specify the initial marking by passing a dictionary with the place names as keys and the number of tokens as values to the attribute *initial_marking_object_places* in the q-net configuration.
+  4. The last attribute to specify an initial marking for object places is called _initial_objects_in_places_. Here, you pass a dictionary with the place names as keys and a multiset of objects as values. 
 - **Initial Marking Collection Points**: You can specify the initial marking of collection points by passing a dictionary with the collection point names as keys and a Counter (library: Collections) as value to the attribute *initial_marking_collection_points* in the q-net configuration.
 - **Final Marking**: If the lifecycle of an object does not come to an end by reaching a single sink place, you can specify all possible final markings (aka markings in which the object can/should finish) of the q-net by setting a dictionary as *final_markings*. 
 The dict should specify all possible sets of final markings per object type, so the key is the object type and the value is a list of sets.
@@ -120,6 +120,9 @@ Examples for all possible ways of defining object and quantity guards can be fou
 
 
 ### Quantity Net Execution
+
+(in progress)
+
 #### Object Types
 **Warning: Changes to objects are global and affect the object anywhere in the q-net, i.e., all tokens referring to the same identifier are affected by the change in object attributes, object quantities and object status.**
 If you want to specify your own object types for the executable q-net, you can do so by specifying the object types in the q-net configuration.
