@@ -170,6 +170,13 @@ class QuantityNet(BaseElement):
 
             place_element.initial = True
 
+    def redefine_initial_places(self, initial_places: set[Place | str]):
+
+        for place in self.initial_places:
+            place.initial = False
+
+        self.set_initial_places(initial_places)
+
     def set_final_places(self, final_places: set[Place | str]):
 
         for place in final_places:
@@ -193,6 +200,13 @@ class QuantityNet(BaseElement):
                 raise ValueError(f"Passed place {place} is not an ObjectPlace and cannot be set as final place.")
 
             place_element.final = True
+
+    def redefine_final_places(self, final_places: set[Place | str]):
+
+        for place in self.final_places:
+            place.final = False
+
+        self.set_final_places(final_places)
 
     def set_transition_labels(self, transition_labels: dict[str | Transition | uuid.UUID, str]):
         """

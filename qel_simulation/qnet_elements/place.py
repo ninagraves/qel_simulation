@@ -16,7 +16,7 @@ class Place(ConnectedElement):
 
     @property
     def initial(self):
-        if self._initial:
+        if self._initial is not None:
             return self._initial
         else:
             pass
@@ -32,7 +32,7 @@ class Place(ConnectedElement):
 
     @property
     def final(self):
-        if self._final:
+        if self._final is not None:
             return self._final
         else:
             pass
