@@ -173,7 +173,7 @@ class Object(LogElement):
 
 
 class DefaultObject(Object):
-    object_type_name = "Default Object"
+    object_type_name = "Default Object Type"
 
     def __init__(self, timestamp: datetime.datetime, label: str = None, properties: dict = None,
                  o2o: dict["Object": str] = None, quantities: Counter = None):
