@@ -2,7 +2,7 @@ from typing import Type, Any, Callable, Counter
 
 from qel_simulation.components.base_element import BaseElement
 from qel_simulation.simulation.event import Event
-from qel_simulation.components.collection_counter import CollectionCounter
+from qel_simulation.qnet_elements.collection_point import CollectionCounter
 from qel_simulation.simulation.object import Object, MultisetObject
 from qel_simulation.qnet_elements.guard import QuantityGuardSmallstockConfig, QuantityGuard
 from qel_simulation.qnet_elements.qalculator import Qalculator

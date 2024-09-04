@@ -1,5 +1,5 @@
 from qel_simulation.qnet_elements.arc import Arc
-from qel_simulation.components.collection_point import CollectionPoint
+from qel_simulation.qnet_elements.collection_point import CollectionPoint
 
 class Qarc(Arc):
 

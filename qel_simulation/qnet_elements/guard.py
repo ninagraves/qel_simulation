@@ -2,8 +2,8 @@ from collections import Counter
 from typing import Callable
 
 from qel_simulation.simulation.object import BindingFunction
-from qel_simulation.components.collection_point import CollectionPoint
-from qel_simulation.components.collection_counter import CollectionCounter
+from qel_simulation.qnet_elements.collection_point import CollectionPoint, CollectionCounter
+
 
 
 class QuantityGuardSmallstockConfig:

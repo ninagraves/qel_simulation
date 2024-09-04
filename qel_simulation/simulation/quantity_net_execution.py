@@ -4,8 +4,7 @@ from typing import Type, Any
 from qel_simulation.components.base_element import BaseElement
 from qel_simulation.simulation.event import Event, create_activity
 from qel_simulation.simulation.object import Object, create_object_type, StatusActive, StatusTerminated, MultisetObject, BindingFunction
-from qel_simulation.components.collection_point import CollectionPoint
-from qel_simulation.components.collection_counter import CollectionCounter
+from qel_simulation.qnet_elements.collection_point import CollectionPoint, CollectionCounter
 from qel_simulation.qnet_elements.guard import QuantityGuardSmallStock
 from qel_simulation.components.quantity_event_log import QuantityEventLog
 from qel_simulation.components.quantity_net import QuantityNet
