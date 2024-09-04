@@ -6,7 +6,7 @@ import numpy as np
 
 from qel_simulation.components.log_element import LogElement
 from qel_simulation.simulation.object import Object, MultisetObject, BindingFunction
-from qel_simulation.qnet_elements.collection_point import CollectionCounter
+from qel_simulation.components.collection_counter import CollectionCounter
 from qel_simulation.simulation.execution import Execution
 from qel_simulation.simulation.instructions import Instruction, InstructionObjectCreation
 

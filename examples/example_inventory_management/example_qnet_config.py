@@ -5,7 +5,8 @@ from itertools import combinations, product
 import binpacking
 import numpy as np
 
-from qel_simulation.simulation.event import Event, BindingFunction, CollectionCounter
+from qel_simulation.simulation.event import Event, BindingFunction
+from qel_simulation.components.collection_counter import CollectionCounter
 from qel_simulation.simulation.execution import Execution
 from qel_simulation.simulation.object import Object, StatusInactive, StatusActive, StatusTerminated, MultisetObject
 from qel_simulation.qnet_elements.guard import QuantityGuardSmallstockConfig, QuantityGuard

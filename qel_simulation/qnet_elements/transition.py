@@ -4,7 +4,8 @@ from typing import Type, Callable
 
 from qel_simulation.components.base_element import ConnectedElement
 from qel_simulation.simulation.object import Object, BindingFunction, MultisetObject
-from qel_simulation.qnet_elements.collection_point import CollectionPoint, CollectionCounter
+from qel_simulation.components.collection_point import CollectionPoint
+from qel_simulation.components.collection_counter import CollectionCounter
 from qel_simulation.qnet_elements.guard import Guard
 from qel_simulation.qnet_elements.object_arc import ObjectArc
 from qel_simulation.qnet_elements.object_place import ObjectPlace

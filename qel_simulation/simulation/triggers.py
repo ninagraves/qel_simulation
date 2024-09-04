@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from collections import Counter
 from typing import Any
 
-from qel_simulation.qnet_elements.collection_point import CollectionPoint
+from qel_simulation.components.collection_point import CollectionPoint
 from qel_simulation.qnet_elements.object_place import ObjectPlace
 from qel_simulation.qnet_elements.transition import Transition
 

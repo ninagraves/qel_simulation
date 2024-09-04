@@ -6,7 +6,8 @@ from qel_simulation.components.base_element import BaseElement, ConnectedElement
 from qel_simulation.simulation.execution import Execution
 from qel_simulation.simulation.object import Object, create_object_type
 from qel_simulation.qnet_elements.arc import Arc
-from qel_simulation.qnet_elements.collection_point import CollectionPoint, CollectionCounter
+from qel_simulation.components.collection_point import CollectionPoint
+from qel_simulation.components.collection_counter import CollectionCounter
 from qel_simulation.qnet_elements.guard import QuantityGuardSmallStock, QuantityGuard
 from qel_simulation.qnet_elements.object_arc import ObjectArc
 from qel_simulation.qnet_elements.object_place import ObjectPlace
