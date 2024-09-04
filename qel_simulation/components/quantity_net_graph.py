@@ -5,6 +5,19 @@ import pygraphviz as pgv
 
 from qel_simulation.components.quantity_net import QuantityNet, Transition, Qarc, ObjectArc, ObjectPlace, CollectionPoint
 from qel_simulation.GLOBAL import CHART_COLOURS
+from IPython.display import Image, display
+
+def show_qnet_graph(qnet: QuantityNet, marked: bool = False):
+    graph = QuantityGraph(qnet=qnet, marked=marked)
+    graph.create_graph()
+    img = graph.graph.draw(None, prog="dot", format="png")
+    plt = Image(img)
+    display(plt)
+
+def export_qnet_graph(qnet: QuantityNet, file_name: str, file_format: str = "svg", marked: bool = False):
+    graph = QuantityGraph(qnet=qnet, marked=marked)
+    graph.create_graph()
+    graph.export_graph(file_name, file_format)
 
 
 class GraphElement:
