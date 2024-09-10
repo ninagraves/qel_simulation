@@ -1,3 +1,4 @@
+## README STILL IN PROGRESS
 # QEL Simulation
 
 This is a tool for the simulation of a Quantity Event Log (QEL). A QEL is an object-centric event log considering item 
