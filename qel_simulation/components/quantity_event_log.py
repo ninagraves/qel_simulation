@@ -108,7 +108,10 @@ class QuantityEventLog(BaseElement):
                 object_type_data[self.object_type_col] = object_type
                 obj = pd.concat([obj, object_type_data])
                 obj = obj.drop_duplicates()
-                obj = obj.drop(columns=[self.object_change])
+                if self.object_change in obj.columns:
+                    obj = obj.drop(columns=[self.object_change])
+                else:
+                    pass
             obj = obj.set_index(self.object_id_col)
             return obj
         else:
